@@ -1,7 +1,12 @@
 import axios from 'axios';
 
 // OCR and document summarization can take longer than a typical JSON request.
-const api = axios.create({ baseURL: '/api', timeout: 150000 });
+
+const api = axios.create({
+  baseURL: 'https://healthsync-ai1.onrender.com/api',
+  timeout: 150000,
+});
+
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem('healthsync_token');
   if (token) config.headers.Authorization = `Bearer ${token}`;
